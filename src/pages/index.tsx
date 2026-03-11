@@ -37,9 +37,9 @@ const CartPage: NextPage<CartPageProps> = ({ initialCartData }) => {
   return (
     <Layout title="Your Cart – Ecoyaan">
       <CheckoutSteps currentStep="cart" />
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
         {/* Cart Items */}
-        <div className="lg:col-span-2">
+        <div className="md:col-span-2">
           <Card className="border-0 shadow-md rounded-2xl overflow-hidden">
             <CardHeader className="pb-3 bg-white border-b border-gray-100">
               <CardTitle className="flex items-center gap-2.5 text-xl text-gray-800">
@@ -83,7 +83,7 @@ const CartPage: NextPage<CartPageProps> = ({ initialCartData }) => {
         </div>
 
         {/* Order Summary */}
-        <div className="lg:col-span-1">
+        <div className="md:col-span-1">
           <Card className="sticky top-24 border-0 shadow-md rounded-2xl overflow-hidden">
             <CardHeader className="pb-3 bg-white border-b border-gray-100">
               <CardTitle className="text-lg text-gray-800">Order Summary</CardTitle>
@@ -97,17 +97,17 @@ const CartPage: NextPage<CartPageProps> = ({ initialCartData }) => {
 
       {/* Sticky bottom action bar */}
       {displayData.cartItems.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-gray-200 shadow-2xl px-4 py-3">
-          <div className="container mx-auto max-w-6xl">
-            <div className="flex items-center gap-3 lg:grid lg:grid-cols-3">
-              <div className="hidden lg:flex lg:col-span-2 items-center gap-2">
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-gray-200 shadow-2xl px-3 pt-2.5 pb-safe-bar sm:px-4 sm:pt-3">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex items-center gap-2 sm:gap-3 md:grid md:grid-cols-3">
+              <div className="hidden md:flex md:col-span-2 items-center gap-2">
                 <span className="text-sm font-semibold text-gray-800">
                   {totalItems} item{totalItems !== 1 ? "s" : ""} in cart
                 </span>
                 <span className="text-gray-300">·</span>
                 <span className="text-xs text-gray-400">Free shipping on orders above ₹499</span>
               </div>
-              <div className="flex-1 lg:col-span-1">
+              <div className="flex-1 md:col-span-1">
                 <Button
                   className="w-full gap-2 text-sm h-11 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-green-200 transition-all hover:shadow-xl"
                   onClick={handleProceed}

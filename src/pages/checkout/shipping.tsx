@@ -124,8 +124,8 @@ const ShippingPage: NextPage = () => {
   return (
     <Layout title="Shipping Address – Ecoyaan">
       <CheckoutSteps currentStep="shipping" />
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
-        <div className="lg:col-span-2 space-y-3 lg:space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        <div className="md:col-span-2 space-y-3 md:space-y-4">
           {/* Saved Addresses Section */}
           {savedAddresses.length > 0 && (
             <Card className="border-0 shadow-md rounded-2xl overflow-hidden">
@@ -334,7 +334,7 @@ const ShippingPage: NextPage = () => {
         </div>
 
         {/* Sidebar - Order Summary */}
-        <div className="lg:col-span-1">
+        <div className="md:col-span-1">
           <Card className="sticky top-24 border-0 shadow-md rounded-2xl overflow-hidden">
             <CardHeader className="pb-3 bg-white border-b border-gray-100">
               <CardTitle className="text-lg text-gray-800">Order Summary</CardTitle>
@@ -347,14 +347,14 @@ const ShippingPage: NextPage = () => {
       </div>
 
       {/* Sticky Bottom Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-gray-200 shadow-2xl px-4 py-3">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex items-center gap-3 lg:grid lg:grid-cols-3">
-            <div className="flex items-center gap-3 flex-1 lg:col-span-2">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-gray-200 shadow-2xl px-3 pt-2.5 pb-safe-bar sm:px-4 sm:pt-3">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex items-center gap-2 sm:gap-3 md:grid md:grid-cols-3">
+            <div className="flex items-center gap-2 sm:gap-3 flex-1 md:col-span-2">
               <Button
                 type="button"
                 variant="outline"
-                className="gap-2 h-11 px-5 rounded-xl border-gray-300 text-gray-600 hover:border-green-400 hover:text-green-700 font-semibold flex-shrink-0"
+                className="gap-1.5 sm:gap-2 h-10 sm:h-11 px-3 sm:px-5 rounded-xl border-gray-300 text-gray-600 hover:border-green-400 hover:text-green-700 font-semibold flex-shrink-0"
                 onClick={() => router.back()}
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -362,7 +362,7 @@ const ShippingPage: NextPage = () => {
               </Button>
               <Button
                 type="button"
-                className="flex-1 gap-2 h-11 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-green-200 transition-all hover:shadow-xl text-sm"
+                className="flex-1 gap-1.5 sm:gap-2 h-10 sm:h-11 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-green-200 transition-all hover:shadow-xl text-sm"
                 disabled={isSubmitting}
                 onClick={() => {
                   if (mode === "select") {
@@ -372,11 +372,11 @@ const ShippingPage: NextPage = () => {
                   }
                 }}
               >
-                Continue to Payment
+                <span className="hidden sm:inline">Continue to </span>Payment
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
-            <div className="hidden lg:flex lg:col-span-1 items-center justify-center text-sm text-gray-400 gap-1.5 pl-4">
+            <div className="hidden md:flex md:col-span-1 items-center justify-center text-sm text-gray-400 gap-1.5 pl-4">
               <span>🔒</span>
               <span>Secure & Encrypted</span>
             </div>
