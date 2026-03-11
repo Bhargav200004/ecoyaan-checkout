@@ -19,6 +19,12 @@ export interface ShippingAddress {
   pinCode: string;
   city: string;
   state: string;
+  addressLine?: string;
+}
+
+export interface SavedAddress extends ShippingAddress {
+  id: string;
+  label: string;
 }
 
 export type CheckoutStep = "cart" | "shipping" | "payment" | "success";

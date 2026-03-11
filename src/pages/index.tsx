@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { ShoppingCart, ArrowRight, Package } from "lucide-react";
+import { ShoppingCart, ArrowRight, Package, Leaf } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import CheckoutSteps from "@/components/checkout/CheckoutSteps";
 import CartItem from "@/components/cart/CartItem";
@@ -37,28 +37,34 @@ const CartPage: NextPage<CartPageProps> = ({ initialCartData }) => {
   return (
     <Layout title="Your Cart – Ecoyaan">
       <CheckoutSteps currentStep="cart" />
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
         {/* Cart Items */}
         <div className="lg:col-span-2">
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2 text-xl">
-                <ShoppingCart className="w-5 h-5 text-primary" />
+          <Card className="border-0 shadow-md rounded-2xl overflow-hidden">
+            <CardHeader className="pb-3 bg-white border-b border-gray-100">
+              <CardTitle className="flex items-center gap-2.5 text-xl text-gray-800">
+                <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-green-100">
+                  <ShoppingCart className="w-5 h-5 text-green-700" />
+                </div>
                 Shopping Cart
-                <Badge variant="secondary" className="ml-1">
-                  {totalItems} item{totalItems !== 1 ? "s" : ""}
-                </Badge>
+                {totalItems > 0 && (
+                  <Badge className="ml-1 bg-green-100 text-green-700 hover:bg-green-100 font-semibold">
+                    {totalItems} item{totalItems !== 1 ? "s" : ""}
+                  </Badge>
+                )}
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-0">
               {displayData.cartItems.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-16 gap-4 text-muted-foreground">
-                  <Package className="w-16 h-16 opacity-30" />
-                  <p className="text-lg font-medium">Your cart is empty</p>
+                <div className="flex flex-col items-center justify-center py-20 gap-4 text-gray-400">
+                  <div className="w-24 h-24 rounded-full bg-gray-50 flex items-center justify-center">
+                    <Package className="w-12 h-12 opacity-30" />
+                  </div>
+                  <p className="text-lg font-semibold text-gray-500">Your cart is empty</p>
                   <p className="text-sm">Add some eco-friendly products!</p>
                 </div>
               ) : (
-                <div>
+                <div className="px-6">
                   {displayData.cartItems.map((item) => (
                     <CartItem key={item.product_id} item={item} />
                   ))}
@@ -66,33 +72,54 @@ const CartPage: NextPage<CartPageProps> = ({ initialCartData }) => {
               )}
             </CardContent>
           </Card>
+
+          {/* Eco badge */}
+          <div className="mt-4 flex items-center gap-2 p-3 bg-green-50 rounded-xl border border-green-100">
+            <Leaf className="w-4 h-4 text-green-600 flex-shrink-0" />
+            <p className="text-xs text-green-700 font-medium">
+              All products are sustainably sourced and packaged with eco-friendly materials 🌿
+            </p>
+          </div>
         </div>
 
         {/* Order Summary */}
         <div className="lg:col-span-1">
-          <Card className="sticky top-24">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Order Summary</CardTitle>
+          <Card className="sticky top-24 border-0 shadow-md rounded-2xl overflow-hidden">
+            <CardHeader className="pb-3 bg-white border-b border-gray-100">
+              <CardTitle className="text-lg text-gray-800">Order Summary</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 pt-4">
               <OrderSummary />
-              {displayData.cartItems.length > 0 && (
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* Sticky bottom action bar */}
+      {displayData.cartItems.length > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-gray-200 shadow-2xl px-4 py-3">
+          <div className="container mx-auto max-w-6xl">
+            <div className="flex items-center gap-3 lg:grid lg:grid-cols-3">
+              <div className="hidden lg:flex lg:col-span-2 items-center gap-2">
+                <span className="text-sm font-semibold text-gray-800">
+                  {totalItems} item{totalItems !== 1 ? "s" : ""} in cart
+                </span>
+                <span className="text-gray-300">·</span>
+                <span className="text-xs text-gray-400">Free shipping on orders above ₹499</span>
+              </div>
+              <div className="flex-1 lg:col-span-1">
                 <Button
-                  className="w-full gap-2 text-base h-12"
+                  className="w-full gap-2 text-sm h-11 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-green-200 transition-all hover:shadow-xl"
                   onClick={handleProceed}
                 >
                   Proceed to Checkout
                   <ArrowRight className="w-4 h-4" />
                 </Button>
-              )}
-              <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                <span>🔒</span>
-                <span>Secure &amp; Encrypted Checkout</span>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </Layout>
   );
 };

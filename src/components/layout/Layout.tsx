@@ -21,14 +21,18 @@ const Layout: React.FC<LayoutProps> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="min-h-screen flex flex-col" style={{ background: "linear-gradient(135deg, #f0fdf4 0%, #f7fce8 50%, #ecfdf5 100%)" }}>
         <Header />
-        <main className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
+        <main className="flex-1 container mx-auto px-4 py-5 lg:py-6 max-w-6xl pb-28">
           {children}
         </main>
-        <footer className="border-t bg-white py-6">
+        <footer className="border-t bg-white/80 backdrop-blur py-5">
           <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-            <p>© 2024 Ecoyaan · Sustainable choices for a better planet 🌿</p>
+            <p className="flex items-center justify-center gap-1.5">
+              <span>🌿</span>
+              <span>© 2024 Ecoyaan · Sustainable choices for a better planet</span>
+              <span>🌿</span>
+            </p>
           </div>
         </footer>
       </div>
