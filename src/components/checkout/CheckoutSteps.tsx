@@ -37,7 +37,7 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({ currentStep }) => {
             <div className="flex flex-col items-center gap-1.5">
               <div
                 className={cn(
-                  "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300 shadow-sm",
+                  "flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 transition-all duration-300 shadow-sm",
                   idx < current
                     ? "bg-gradient-to-br from-green-500 to-emerald-600 border-green-500 text-white shadow-green-200"
                     : idx === current
@@ -53,7 +53,7 @@ const CheckoutSteps: React.FC<CheckoutStepsProps> = ({ currentStep }) => {
               </div>
               <span
                 className={cn(
-                  "text-xs font-semibold hidden sm:block transition-colors",
+                  "text-[10px] sm:text-xs font-semibold transition-colors",
                   idx < current
                     ? "text-green-600"
                     : idx === current

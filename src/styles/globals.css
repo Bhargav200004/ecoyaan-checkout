@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* iOS safe area – compensates for home indicator on iPhone X and newer */
+  .pb-safe-bar {
+    padding-bottom: max(0.625rem, env(safe-area-inset-bottom));
+  }
+  @media (min-width: 640px) {
+    .pb-safe-bar {
+      padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+    }
+  }
+  /* Extra bottom padding on main to clear the taller safe-area bar */
+  .pb-safe-main {
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

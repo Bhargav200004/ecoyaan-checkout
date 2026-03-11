@@ -14,8 +14,8 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const updateItemQuantity = useCheckoutStore((s) => s.updateItemQuantity);
 
   return (
-    <div className="flex items-center gap-4 py-4 border-b last:border-0 group">
-      <div className="relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border border-gray-100 bg-gray-50 shadow-sm">
+    <div className="flex items-center gap-3 sm:gap-4 py-3 sm:py-4 border-b last:border-0 group">
+      <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-xl overflow-hidden border border-gray-100 bg-gray-50 shadow-sm">
         <Image
           src={item.image}
           alt={item.product_name}
